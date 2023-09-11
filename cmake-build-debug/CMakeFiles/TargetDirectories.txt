@@ -1,0 +1,3 @@
+C:/Users/Keagan/Desktop/Code/CS1511/cmake-build-debug/CMakeFiles/CS1511.dir
+C:/Users/Keagan/Desktop/Code/CS1511/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Keagan/Desktop/Code/CS1511/cmake-build-debug/CMakeFiles/rebuild_cache.dir
