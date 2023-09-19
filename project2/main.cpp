@@ -5,12 +5,9 @@ int invites;
 char color, mail, elecMail;
 const double colorInvCost = 0.2;
 const double mailingCost = 0.2;
-const double elecMailCost = 0.2;
 const double elecMailFee = 20;
-const double costPer = 0.75;
-const double medCostPer = 0.50;
-const double overCostPer = 1.00;
-double totalCost, baseInvCost, totalCostColor, totalMailCost;
+double costPer = 0.75;
+double totalCost;
 bool electronicMail = false;
 bool mailing = false;
 bool coloring = false;
@@ -36,46 +33,41 @@ int main() {
     cout.precision(2);
 
     if(invites < 20) {
-        baseInvCost = invites * costPer;
-        cout << baseInvCost << endl;
+        costPer = 0.75;
+        totalCost = invites * costPer;
     }
     if(invites >= 20 && invites < 100) {
-        baseInvCost = invites * medCostPer;
-        cout << baseInvCost << endl;
+        costPer = 0.50;
+        totalCost = invites * costPer;
     }
     if(invites >= 100) {
-        baseInvCost = invites * overCostPer;
-        cout << baseInvCost << endl;
+        costPer = 0.40;
+        totalCost = invites * costPer;
     }
     if(color == 'Y') {
-        totalCostColor = colorInvCost * invites + baseInvCost;
+        totalCost = colorInvCost * invites + totalCost;
         coloring = true;
-
-    }
-    if(color == 'N') {
-        totalCost = baseInvCost;
     }
     if(mail == 'Y') {
-        totalCost = mailingCost * invites + baseInvCost;
-        cout << totalMailCost << endl;
+        totalCost = mailingCost * invites + totalCost;
         mailing = true;
     }
     if (electronicMail) {
         totalCost = totalCost + elecMailFee;
     }
-    if(mail == 'N') {
-        totalMailCost = totalCostColor;
-    }
     cout << "Party Invitations, Inc\n";
-    cout << "Quantity Ordered: " << invites << endl;
+    cout << "Quantity Ordered: " << invites << " @ $" << costPer << "/invitation" << endl;
     if (mailing) {
-        cout << "Mailing " << invites << " @ $0.20/invitation" << endl;
+        cout << "Mailing @ additional $0.20/invitation $" << invites * mailingCost << endl;
     }
     if (electronicMail) {
-        cout << "Additional electronic mailing fee of $" << elecMailFee << endl;
+        cout << "Additional electronic mailing fee $" << elecMailFee << endl;
     }
     if (coloring) {
-        cout << "Printing " << invites << " in color @ additional $0.20/invitation" << endl;
+        cout << "Printing in color @ additional $0.20/invitation $" << invites * colorInvCost << endl;
+    }
+    if(color == 'N' && mail == 'N') {
+        cout << "No extras selected \n";
     }
     cout << "Total Cost: $" << totalCost << endl;
 }
